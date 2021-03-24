@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'vendor_admin'
+LOGOUT_REDIRECT_URL = 'frontpage'
 
 # Application definition
 
@@ -34,6 +37,7 @@ INSTALLED_APPS = [
     # Apps
     'apps.core',
     'apps.vendor',
+    'apps.product',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,3 +129,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
