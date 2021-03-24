@@ -12,14 +12,16 @@ class Category(models.Model):
     
     class Meta:
         ordering = ['ordering']
+        verbose_name = 'category'
+        verbose_name_plural = 'catogries'
         
-def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.title
 
 
 class Product(models.Model):
-    catergory = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    vendor = models.ForeignKey('vendor.Vendor', related_name='vendor', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    vendor = models.ForeignKey('vendor.Vendor', related_name='products', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -41,19 +43,19 @@ class Product(models.Model):
             if self.image:
                 self.thumbnail = self.make_thumbnail(self.image)
                 self.save()
-                
+
                 return self.thumbnail.url
             else:
                 return 'https://via.placeholder.com/240x180.jpg'
 
-def make_thumbnail(self, image, size=(300, 200)):
-    img = Image.open(image)
-    img.convert('RGB')
-    img.thumbnail(size)
-    
-    thumb_io = BytesIO()
-    img.save(thumb_io, 'JPEG', quality=85)
-    
-    thubnail = File(thumb_io, name=image.name)
-    
-    return thubnail
+    def make_thumbnail(self, image, size=(300, 200)):
+        img = Image.open(image)
+        img.convert('RGB')
+        img.thumbnail(size)
+
+        thumb_io = BytesIO()
+        img.save(thumb_io, 'JPEG', quality=85)
+
+        thumbnail = File(thumb_io, name=image.name)
+
+        return thumbnail
