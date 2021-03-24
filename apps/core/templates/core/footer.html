@@ -1,0 +1,14 @@
+<footer class="footer">
+    <h3 class="is-size-4 mb-4">Interiorshop</h3>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'vendor_admin' %}">Vendor admin</a>
+    {% else %}
+        <a href="{% url 'become_vendor' %}">Become vendor</a>
+    {% endif %}
+
+
+    {% comment %}
+    <a href="{% url 'vendors' %}">Vendors</a>
+    {% endcomment %}
+
+</footer>
