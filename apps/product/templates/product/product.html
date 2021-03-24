@@ -23,8 +23,7 @@
         {% endfor %}
     {% endif %}
     
-    {% comment %}      
-    <form method="post" action=".">
+    <form method="post" action="">
         {% csrf_token %}
 
         <div class="field has-addons">
@@ -37,8 +36,6 @@
             </div>
         </div>
     </form>
-    {% endcomment %}
-
 
     {% if similar_products %}
         <hr>
