@@ -31,6 +31,9 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'vendor_admin'
 LOGOUT_REDIRECT_URL = 'frontpage'
 
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = 'cart'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.vendor',
     'apps.product',
+    'apps.cart',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,7 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.product.context_processors.menu_categories'
+                'apps.product.context_processors.menu_categories',
+                'apps.cart.context_processors.cart',
             ],
         },
     },
