@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ac@vqpy%gh_e8_fqyvx4^4mx7fafrt#3$j!ma!j^vm5+#0i39u'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'vendor_admin'
@@ -33,6 +36,19 @@ LOGOUT_REDIRECT_URL = 'frontpage'
 
 SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
+
+STRIPE_PUB_KEY = env("STRIPE_PUB_KEY")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+DEFAULT_EMAIL_FROM = 'Ecommerecex <noreply@sbxdevtest.com>'
 
 # Application definition
 
@@ -42,6 +58,7 @@ INSTALLED_APPS = [
     'apps.vendor',
     'apps.product',
     'apps.cart',
+    'apps.order',
     
     'django.contrib.admin',
     'django.contrib.auth',
