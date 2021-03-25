@@ -1,5 +1,5 @@
 # ecommercex
-A veru basic multi vendor ecommerce website built using Django for practice.  Not used for production
+A very basic multi vendor ecommerce website built using Django for practice.  Not used for production
 
 # Home Page
 
